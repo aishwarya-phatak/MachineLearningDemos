@@ -1,0 +1,33 @@
+import pandas as pd
+
+#/Users/vishaljagtap/PycharmProjects/MachineLearningDemos/dataset/house_price_prediction.csv
+
+#house_price_prediction_dataset = pd.read_csv("/Users/vishaljagtap/PycharmProjects/MachineLearningDemos/dataset/house_price_prediction.csv")
+
+dataset_1 = pd.read_csv("../dataset/raw/house_price_prediction.csv")
+print(dataset_1)
+print("-----------------------")
+print(dataset_1.keys())
+print("-----------------------")
+print(dataset_1.describe())
+print("-----------------------")
+print(dataset_1.info())
+print("-----------------------")
+print(dataset_1.head())                 #first 5 rows by head method
+
+print("---------Cleaning of data--------------")
+print(dataset_1.isnull())           #returns dataframe with boolean true and false values
+print(dataset_1.isnull().sum())     #returns dataframe with sum of all null values in each column
+
+print('-------drop values----------')
+print(dataset_1.dropna())           #drop the rows where value is missing
+
+print("-----------Encoding-------------")
+dataset_with_dummies = pd.get_dummies(dataset_1)            #encoding for categorization
+print(dataset_with_dummies)
+
+x = dataset_with_dummies.drop(columns=['Price'])            #drop the columns which you want on the another axes
+print(x)
+y = dataset_with_dummies['Price']
+print(y)
+
