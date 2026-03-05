@@ -1,4 +1,8 @@
+import numpy as np
 import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.model_selection import train_test_split
 
 #/Users/vishaljagtap/PycharmProjects/MachineLearningDemos/dataset/house_price_prediction.csv
 
@@ -31,3 +35,31 @@ print(x)
 y = dataset_with_dummies['Price']
 print(y)
 
+print("--------------Splitting of Dataset For Training and testing purpose------------------")
+#scikit learn usage for splitting of dataset
+x_train, x_test, y_train, y_test = train_test_split(x,
+                                                    y,
+                                                    test_size=0.2,
+                                                    train_size=0.8,
+                                                    random_state=42)
+print(x_train)
+print(x_test)
+print(y_train)
+print(y_test)
+
+#Train Linear Regression Model
+model = LinearRegression()
+model.fit(x_train, y_train)
+
+#predictions
+y_prediction = model.predict(x_test)
+print(y_prediction)
+
+#evaluate - MAE, RMSE, R2 Score
+mae = mean_absolute_error(y_test, y_prediction)
+mse = mean_squared_error(y_test, y_prediction)
+result_rms = np.sqrt(mse)
+r2_result = r2_score(y_test, y_prediction)
+print(mae)
+print(result_rms)
+print(r2_result)
