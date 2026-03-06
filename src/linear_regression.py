@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
@@ -63,3 +64,11 @@ r2_result = r2_score(y_test, y_prediction)
 print(mae)
 print(result_rms)
 print(r2_result)
+
+#matplotlib is a library or framework
+plt.figure(figsize=(5,5))
+plt.scatter(y_test, y_prediction)
+plt.xlabel("Actual Price")
+plt.ylabel("Predicted Price")
+plt.title("House price prediction")
+plt.show()
